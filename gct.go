@@ -59,6 +59,7 @@ func setGitConfig(config string, value string){
 		fmt.Println(value)
 		exec.Command("git", "config", config, strconv.Quote(value)).Start()
 	} else {
+		exec.Command("git", "config", "--unset", config).Start()
 		fmt.Printf("Can't set %s with a empty value.\n", config)
 	}
 }
