@@ -1,4 +1,4 @@
-package gct
+package main
 
 //import "github.com/google/go-github/github"
 import (
