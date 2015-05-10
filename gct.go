@@ -57,9 +57,13 @@ func findUser(userName string) (user *User, err error){
 func setGitConfig(config string, value string){
 	if len(value) > 0 {
 		fmt.Println(value)
-		exec.Command("git", "config", config, strconv.Quote(value)).Start()
+		err := exec.Command("git", "config", config, strconv.Quote(value)).Run()
+		if err != nil {
+			fmt.Printf("Can't change property %s\n", config)
+			fmt.Println(err)
+		}
 	} else {
-		exec.Command("git", "config", "--unset", config).Start()
+		exec.Command("git", "config", "--unset", config).Run()
 		fmt.Printf("Can't set %s with a empty value.\n", config)
 	}
 }
